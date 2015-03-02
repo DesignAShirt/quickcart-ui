@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="STRIPE_PUBLISHABLE_KEY.js"></script>
+  <script>
+  if (!('STRIPE_PUBLISHABLE_KEY' in this)) {
+    alert('Please create ./STRIPE_PUBLISHABLE_KEY.js with the following:\n\nvar STRIPE_PUBLISHABLE_KEY = "pk_[...]";');
+  }
+  </script>
+</head>
+<body>
+
+  <table style="width:100%;">
+    <tr>
+      <td style="width:50%;">
+        <h3>Some Product</h3>
+        <div>Price: $5.99</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, molestiae, blanditiis! Sunt dicta ab accusamus exercitationem commodi quo nesciunt, voluptatibus quisquam. Ipsam, quos quaerat ut eaque ab perspiciatis facilis quas!</p>
+        Qty: <select onchange="document.querySelector('#product1-add').setAttribute('data-quickcart-item-quantity', this.options[this.selectedIndex].value);">
+          <option selected="selected">1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <button id="product1-add" data-quickcart-action="add" data-quickcart-item-product="product1" data-quickcart-item-price="599" data-quickcart-item-quantity="1">Add</button>
+      </td>
+      <td style="text-align:right;">
+        <div>
+          <div><span class="quickcart-count"></span> items in cart</div>
+          <div><span class="quickcart-total"></span> total</div>
+        </div>
+        <hr>
+        <div class="quickcart-items"></div>
+      </td>
+    </tr>
+  </table>
+
+  <script src="../bower_components/eventemitter2/lib/eventemitter2.js"></script>
+  <script src="../bower_components/quickcart/quickcart.js"></script>
+  <script src="../lib/quickcart-ui.js"></script>
+  <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+  <script>
+  function stripePaymentDriver(cart, callback) {
+    console.info('Opening stripe checkout');
+    StripeCheckout.open({
+      key: STRIPE_PUBLISHABLE_KEY, // enter here or create a script matching the placeholder in <head> above
+      // address: true, // disabled to simplify dev testing
+      amount: cart.total,
+      currency: 'usd',
+      name: 'My Company, LLC',
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      description: cart.count + ' widgets',
+      panelLabel: 'Checkout',
+      token: function(token) {
+        console.info('Stripe token returned', token);
+        cart.options.meta.stripe = token.id;
+        callback(null, true);
+      },
+      closed: function() {
+        // Stripe checkout doesn't have a way to differentiate closed -> user (cancelled)
+        // and closed -> purhcased (token) o.O
+        // For now unlock manually, which means it'll leak bc the callback is never called
+        // ...and there is not a way to detect user cancel
+        cart.lock(false);
+        // callback(null, false);
+      }
+    });
+  }
+
+  var cart = new QuickCart(document, {
+    cart: {
+      dupeItemMode: 'add',
+      paymentDriver: stripePaymentDriver
+    }
+  });
+
+  cart.init();
+  </script>
+</body>
+</html>
