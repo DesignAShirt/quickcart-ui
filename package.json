@@ -1,0 +1,22 @@
+{
+  "name": "quickcart-ui",
+  "version": "0.0.1",
+  "description": "Implementation of quickcart that is ready to be dropped into a site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DesignAShirt/quickcart-ui.git"
+  },
+  "author": "Cory Mawhorter <cory.mawhorter@gmail.com> (http://mawhorter.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DesignAShirt/quickcart-ui/issues"
+  },
+  "homepage": "https://github.com/DesignAShirt/quickcart-ui",
+  "dependencies": {
+    "quickcart": "git://github.com/designashirt/quickcart"
+  }
+}
