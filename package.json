@@ -18,5 +18,8 @@
   "homepage": "https://github.com/DesignAShirt/quickcart-ui",
   "dependencies": {
     "quickcart": "git://github.com/designashirt/quickcart"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12"
   }
 }
