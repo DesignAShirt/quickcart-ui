@@ -14,7 +14,7 @@
   <table style="width:100%;">
     <tr>
       <td style="width:50%;">
-        <h3>Some Product</h3>
+        <h3 id="product1-name" data-quickcart-propertyvalue="this.innerHTML">Some Product</h3>
         <div id="product1-price" data-quickcart-propertyvalue="599">Price: $5.99</div>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, molestiae, blanditiis! Sunt dicta ab accusamus exercitationem commodi quo nesciunt, voluptatibus quisquam. Ipsam, quos quaerat ut eaque ab perspiciatis facilis quas!</p>
         Qty: <select id="product1-quantity">
@@ -24,7 +24,12 @@
           <option>4</option>
           <option>5</option>
         </select>
-        <button id="product1-add" data-quickcart-action="add" data-quickcart-item-product="product1" data-quickcart-item-price="$#product1-price" data-quickcart-item-quantity="$#product1-quantity">Add</button>
+        <button id="product1-add"
+          data-quickcart-action="add"
+          data-quickcart-item-product="product1"
+          data-quickcart-item-price="$#product1-price"
+          data-quickcart-item-quantity="$#product1-quantity"
+          data-quickcart-item-property-name="$#product1-name">Add</button>
         <hr>
 
         <h3>Some Other Product</h3>
