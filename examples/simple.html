@@ -111,7 +111,7 @@
   }
 
   var cart = new QuickCart(document, {
-    storage: window.localStorage,
+    storage: QuickCart.browserStorage('session'),
     cart: {
       dupeItemMode: 'add',
       paymentDriver: stripePaymentDriver
