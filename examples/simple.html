@@ -53,20 +53,32 @@
         <button id="product3-add" data-quickcart-action="add" data-quickcart-item-product="product3" data-quickcart-item-price="$#product3-price" data-quickcart-item-quantity="$#product3-quantity">Add</button>
       </td>
       <td style="text-align:right;">
+
+        <div><span class="quickcart-count"></span> items in cart</div>
+        <div><span class="quickcart-total"></span> total</div>
         <div>
-          <div><span class="quickcart-count"></span> items in cart</div>
-          <div><span class="quickcart-total"></span> total</div>
-          <div>
-            <button data-quickcart-action="empty">Empty Cart</button>
-          </div>
+          <button data-quickcart-action="empty">Empty Cart</button>
         </div>
+
         <hr>
-        <div class="quickcart-items"></div>
+
+        <table style="width:100%;">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody class="quickcart-items"></tbody>
+        </table>
       </td>
     </tr>
   </table>
 
   <script src="../bower_components/eventemitter2/lib/eventemitter2.js"></script>
+  <script src="../bower_components/hogan/web/builds/3.0.2/hogan-3.0.2.js"></script>
   <script src="../bower_components/quickcart/quickcart.js"></script>
   <script src="../lib/quickcart-ui.js"></script>
   <script src="https://checkout.stripe.com/v2/checkout.js"></script>
