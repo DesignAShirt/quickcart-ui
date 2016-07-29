@@ -16,7 +16,7 @@
     "url": "https://github.com/DesignAShirt/quickcart-ui/issues"
   },
   "homepage": "https://github.com/DesignAShirt/quickcart-ui",
-  "devDependencies": {
+  "dependencies": {
     "quickcart": "git://github.com/designashirt/quickcart",
     "hogan.js": "^3.0.2"
   }
